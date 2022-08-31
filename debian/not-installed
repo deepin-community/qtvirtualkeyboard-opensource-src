@@ -1,0 +1,12 @@
+usr/include/*/qt5/QtHunspellInputMethod
+usr/include/*/qt5/QtVirtualKeyboard/5.*
+usr/lib/*/cmake/Qt5Gui/Qt5Gui_QVirtualKeyboardPlugin.cmake
+usr/lib/*/cmake/Qt5HunspellInputMethod/Qt5HunspellInputMethodConfig.cmake
+usr/lib/*/cmake/Qt5HunspellInputMethod/Qt5HunspellInputMethodConfigVersion.cmake
+usr/lib/*/cmake/Qt5VirtualKeyboard/Qt5VirtualKeyboard_QtVirtualKeyboard*Plugin.cmake
+usr/lib/*/libQt5HunspellInputMethod.la
+usr/lib/*/libQt5HunspellInputMethod.prl
+usr/lib/*/libQt5HunspellInputMethod.so
+usr/lib/*/libQt5VirtualKeyboard.la
+usr/lib/*/qt5/mkspecs/modules/qt_lib_hunspellinputmethod_private.pri
+usr/lib/*/qt5/mkspecs/modules/qt_lib_virtualkeyboard_private.pri

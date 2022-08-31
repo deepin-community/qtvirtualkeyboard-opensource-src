@@ -1,0 +1,130 @@
+Source: qtvirtualkeyboard-opensource-src
+Priority: optional
+Maintainer: Deepin Developer <deepin-dev@deepin.org>
+Uploaders: Deepin Packages Builder <packages@deepin.org>
+Build-Depends: debhelper-compat (= 13),
+               hunspell-en-gb <!nocheck>,
+               libhunspell-dev,
+               libqt5svg5-dev (>= 5.15.3~),
+               libxcb-xfixes0-dev,
+               pkg-config,
+               pkg-kde-tools,
+               qml-module-qt-labs-folderlistmodel (>= 5.15.3~),
+               qml-module-qtqml (>= 5.15.3~),
+               qml-module-qtquick-layouts (>= 5.15.3~),
+               qml-module-qtquick-window2 (>= 5.15.3~),
+               qml-module-qttest (>= 5.15.3~),
+               qtbase5-dev (>= 5.15.3~),
+               qtbase5-private-dev (>= 5.15.3~),
+               qtdeclarative5-dev (>= 5.15.3~),
+               qtquickcontrols2-5-dev (>= 5.15.3~),
+               xauth <!nocheck>,
+               xvfb <!nocheck>
+Build-Depends-Indep: qdoc-qt5 (>= 5.15.3~) <!nodoc>,
+                     qhelpgenerator-qt5 (>= 5.15.3~) <!nodoc>,
+                     qtattributionsscanner-qt5 (>= 5.15.3~) <!nodoc>,
+                     qtbase5-doc-html (>= 5.15.3~) <!nodoc>
+Standards-Version: 4.6.0
+Rules-Requires-Root: no
+Section: libs
+Homepage: https://doc.qt.io/qt-5/qtvirtualkeyboard-index.html
+
+Package: libqt5hunspellinputmethod5
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Qt virtual keyboard - helper library for Hunspell input method
+ The Qt Virtual Keyboard project provides an input framework and
+ reference keyboard frontend for Qt 5 on Linux Desktop/X11, Windows
+ Desktop, and Boot2Qt targets.
+ .
+ This package contains the helper shared library for Hunspell input method.
+
+Package: libqt5virtualkeyboard5
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Qt virtual keyboard - public shared library
+ The Qt Virtual Keyboard project provides an input framework and
+ reference keyboard frontend for Qt 5 on Linux Desktop/X11, Windows
+ Desktop, and Boot2Qt targets.
+ .
+ This package contains the Qt virtual keyboard shared library.
+
+Package: libqt5virtualkeyboard5-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: libqt5virtualkeyboard5 (= ${binary:Version}),
+         qtbase5-dev,
+         ${misc:Depends}
+Description: Qt virtual keyboard - development files
+ The Qt Virtual Keyboard project provides an input framework and
+ reference keyboard frontend for Qt 5 on Linux Desktop/X11, Windows
+ Desktop, and Boot2Qt targets.
+ .
+ This package contains the development files needed to implement input
+ methods for virtual keyboards.
+
+Package: qml-module-qtquick-virtualkeyboard
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: Qt virtual keyboard - QML module
+ The Qt Virtual Keyboard project provides an input framework and
+ reference keyboard frontend for Qt 5 on Linux Desktop/X11, Windows
+ Desktop, and Boot2Qt targets.
+ .
+ This package contains the QML module.
+
+Package: qtvirtualkeyboard-plugin
+Architecture: any
+Multi-Arch: same
+Depends: qml-module-qtquick-virtualkeyboard (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Qt virtual keyboard
+ The Qt Virtual Keyboard project provides an input framework and
+ reference keyboard frontend for Qt 5 on Linux Desktop/X11, Windows
+ Desktop, and Boot2Qt targets.
+ .
+ This package contains the virtual keyboard plugin.
+
+Package: qtvirtualkeyboard5-examples
+Architecture: any
+Multi-Arch: same
+Depends: qml-module-qtquick-controls2,
+         qml-module-qtquick-virtualkeyboard (= ${binary:Version}),
+         qml-module-qtquick2,
+         qtvirtualkeyboard-plugin (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Qt virtual keyboard examples
+ The Qt Virtual Keyboard project provides an input framework and
+ reference keyboard frontend for Qt 5 on Linux Desktop/X11, Windows
+ Desktop, and Boot2Qt targets.
+ .
+ This package contains examples of using the virtual keyboard.
+
+Package: qtvirtualkeyboard5-doc
+Build-Profiles: <!nodoc>
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Description: Qt 5 Virtual Keyboard documentation
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the documentation for the Qt 5 Virtual Keyboard plugin.
+
+Package: qtvirtualkeyboard5-doc-html
+Build-Profiles: <!nodoc>
+Architecture: all
+Section: doc
+Depends: ${misc:Depends}
+Description: Qt 5 Virtual Keyboard HTML documentation
+ Qt is a cross-platform C++ application framework. Qt's primary feature
+ is its rich set of widgets that provide standard GUI functionality.
+ .
+ This package contains the HTML documentation for the Qt 5 Virtual Keyboard
+ plugin.

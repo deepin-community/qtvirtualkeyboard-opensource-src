@@ -1,0 +1,2 @@
+{"Filepath":"include/QtHunspellInputMethod/qthunspellinputmethodversion.h","Functions":null,"Records":[{"Name":"macro","Fields":["QTHUNSPELLINPUTMETHOD_VERSION","QTHUNSPELLINPUTMETHOD_VERSION_STR","QT_QTHUNSPELLINPUTMETHOD_VERSION_H"]}]}
+{"Filepath":"include/QtVirtualKeyboard/qtvirtualkeyboardversion.h","Functions":null,"Records":[{"Name":"macro","Fields":["QTVIRTUALKEYBOARD_VERSION","QTVIRTUALKEYBOARD_VERSION_STR","QT_QTVIRTUALKEYBOARD_VERSION_H"]}]}

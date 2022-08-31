@@ -1,0 +1,3 @@
+src/virtualkeyboard/layouts.qrc
+test_root/
+tests/auto/styles/data/QtQuick/VirtualKeyboard/Settings/

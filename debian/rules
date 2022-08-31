@@ -1,0 +1,43 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+include /usr/share/dpkg/architecture.mk
+
+export CFLAGS := $(shell dpkg-buildflags --get CFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
+export CXXFLAGS := $(shell dpkg-buildflags --get CXXFLAGS) $(shell dpkg-buildflags --get CPPFLAGS)
+export LDFLAGS := $(shell dpkg-buildflags --get LDFLAGS)
+export QT_SELECT := qt5
+
+%:
+	dh $@ --with pkgkde_symbolshelper
+
+override_dh_auto_configure:
+	dh_auto_configure -- QT_BUILD_PARTS+=tests CONFIG+="lang-all handwriting"
+
+override_dh_auto_build-indep:
+	dh_auto_build -- docs
+
+override_dh_auto_install-indep:
+	dh_auto_build -- INSTALL_ROOT=$(CURDIR)/debian/tmp install_docs
+
+override_dh_auto_install-arch:
+	dh_auto_install
+
+	# Reproducible builds: remove build paths from prl files.
+	sed -i -e '/^QMAKE_PRL_BUILD_DIR/d' debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/libQt5VirtualKeyboard.prl
+
+override_dh_auto_test-arch:
+	$(MAKE) -Csrc/settings install INSTALL_ROOT=$(CURDIR)/test_root
+	mv test_root/usr/lib/$(DEB_HOST_MULTIARCH)/qt5/qml/QtQuick/VirtualKeyboard/Settings tests/auto/styles/data/QtQuick/VirtualKeyboard/
+	# Tests are non-fatal because of:
+	# - https://bugreports.qt.io/browse/QTBUG-70833 (qtdeclarative issues on big endian)
+	# - https://bugreports.qt.io/browse/QTBUG-70893 (test_hwrSpellCorrectionSuggestions is unstable)
+	# - test_wclAutoCommitWordSetting fails on armel
+	-xvfb-run -a -s "-screen 0 1024x768x24 +extension RANDR +extension RENDER +extension GLX" \
+	         dh_auto_test --max-parallel=1 -- -k -Ctests/auto \
+	         QT_PLUGIN_PATH=$(CURDIR) QML2_IMPORT_PATH=$(CURDIR)/qml \
+	         HOME=$(CURDIR) LD_LIBRARY_PATH=$(CURDIR)/lib
+
+override_dh_auto_test-indep:
