@@ -18,7 +18,7 @@ libQt5VirtualKeyboard.so.5 libqt5virtualkeyboard5 #MINVER#
  Qt_5.8@Qt_5.8 5.12.2
  Qt_5.9@Qt_5.9 5.12.2
  Qt_5@Qt_5 5.12.2
- Qt_5_PRIVATE_API@Qt_5_PRIVATE_API 5.12.2
+ (symver)Qt_5_PRIVATE_API 0
  _ZN17QtVirtualKeyboard11InputMethod10inputModesERK7QString@Qt_5 5.12.2
  _ZN17QtVirtualKeyboard11InputMethod10traceBeginEiN27QVirtualKeyboardInputEngine22PatternRecognitionModeERK4QMapI7QString8QVariantES8_@Qt_5 5.12.2
  _ZN17QtVirtualKeyboard11InputMethod11qt_metacallEN11QMetaObject4CallEiPPv@Qt_5 5.12.2

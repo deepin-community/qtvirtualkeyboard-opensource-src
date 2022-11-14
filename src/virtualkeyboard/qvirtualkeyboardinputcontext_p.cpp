@@ -278,8 +278,10 @@ void QVirtualKeyboardInputContextPrivate::onInputItemChanged()
                     For integrated keyboards, make sure it's a sibling to the overlay. The
                     high z-order will make sure it gets events also during a modal session.
                 */
-                if (isDesktopPanel.isValid() && !isDesktopPanel.toBool())
-                    vkbPanel->setParentItem(quickItem->window()->contentItem());
+                if (isDesktopPanel.isValid() && !isDesktopPanel.toBool()) {
+                    if (QQuickWindow *quickWindow = quickItem->window())
+                        vkbPanel->setParentItem(quickWindow->contentItem());
+                }
             }
         }
     } else {
@@ -505,6 +507,7 @@ bool QVirtualKeyboardInputContextPrivate::filterEvent(const QEvent *event)
     QEvent::Type type = event->type();
     if (type == QEvent::KeyPress || type == QEvent::KeyRelease) {
         const QKeyEvent *keyEvent = static_cast<const QKeyEvent *>(event);
+        const int key = keyEvent->key();
 
         // Keep track of pressed keys update key event state
         if (type == QEvent::KeyPress)
@@ -518,7 +521,6 @@ bool QVirtualKeyboardInputContextPrivate::filterEvent(const QEvent *event)
             setState(State::KeyEvent);
 
 #ifdef QT_VIRTUALKEYBOARD_ARROW_KEY_NAVIGATION
-        int key = keyEvent->key();
         if ((key >= Qt::Key_Left && key <= Qt::Key_Down) || key == Qt::Key_Return) {
             if (type == QEvent::KeyPress && platformInputContext->isInputPanelVisible()) {
                 activeNavigationKeys += key;
@@ -533,8 +535,16 @@ bool QVirtualKeyboardInputContextPrivate::filterEvent(const QEvent *event)
 #endif
 
         // Break composing text since the virtual keyboard does not support hard keyboard events
-        if (!preeditText.isEmpty())
-            commit();
+        if (!preeditText.isEmpty()) {
+            if (type == QEvent::KeyPress && (key == Qt::Key_Delete || key == Qt::Key_Backspace)) {
+                reset();
+                Q_Q(QVirtualKeyboardInputContext);
+                q->clear();
+                return true;
+            } else {
+                commit();
+            }
+        }
     }
 #ifdef QT_VIRTUALKEYBOARD_ARROW_KEY_NAVIGATION
     else if (type == QEvent::ShortcutOverride) {

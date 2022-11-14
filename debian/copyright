@@ -29,7 +29,7 @@ Files: debian/*
 Copyright: 2016 Jonathan Riddell <jr@jriddell.org>
            2016 Bhushan Shah <bshah@kde.org>
            2018 Simon Quigley <tsimonq2@ubuntu.com>
-           2017-2019 Dmitry Shachnev <mitya57@debian.org>
+           2017-2022 Dmitry Shachnev <mitya57@debian.org>
 License: GPL-3+
 
 Files: *.qdoc
